@@ -7,7 +7,7 @@ class Tendril
   /**
    Class constructor
    len is how many segments in this tendril (each a fixed length, 4 is a good start)
-   theta is tendril starting angle in radians 
+   theta is tendril starting angle in radians
    x, y  is the starting (x,y) coordinate
    */
   public Tendril(int len, double theta, int x, int y)
@@ -27,11 +27,18 @@ class Tendril
       double endX = startX + Math.cos(myAngle)*SEG_LENGTH;
       double endY = startY + Math.sin(myAngle)*SEG_LENGTH;
       line((float) startX, (float) startY, (float) endX, (float) endY);
+      if (myNumSegments < 5) {
+        stroke (#5ED336);
+      } else if (myNumSegments < 20) {
+        stroke(#6E260E);
+      } else {
+        stroke(#E1C16E);
+      }
       startX = endX;
       startY = endY;
     }
-    if (myNumSegments >= 3) {
-      new Cluster(myNumSegments-25, (int) startX, (int) startY);
+    if (myNumSegments >=3) {
+      new Cluster(myNumSegments/3, (int) startX, (int) startY);
     }
   }
 }
